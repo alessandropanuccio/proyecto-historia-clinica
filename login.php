@@ -3,21 +3,27 @@
 
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Historia Clínica Digital</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"> <!--configura la visualización en dispositivos móviles,
+  asegurando que el diseño se adapte al ancho de la pantalla.-->
+  <title>Login - Historia Clínica Digital</title>
   <meta name="description" content="">
-  <meta name="keywords" content="">
+  <meta name="keywords" content=""><!--Espacios reservados para la descripción y las palabras clave del sitio, 
+  útiles para SEO (optimización en motores de búsqueda)-->
 
-  <!-- Favicons -->
+  <!-- Favicons --> 
+   <!--Establecen el icono que se muestra en la pestaña del navegador y en dispositivos Apple cuando se añade a la pantalla de inicio-->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
+  <!-- Conecta con Google Fonts para cargar las fuentes Roboto, Poppins y Raleway, mejorando la tipografía del sitio -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
+   <!--Importa hojas de estilo CSS de librerías externas como Bootstrap, AOS (Animate On Scroll), 
+   FontAwesome (íconos), GLightbox (ventanas emergentes), y Swiper (deslizadores)-->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -26,112 +32,43 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet"> <!--Carga el archivo CSS principal que contiene estilos específicos del sitio-->
 
 </head>
 
 <body class="index-page">
 
-  <header id="header" class="header sticky-top">
-    <div class="branding d-flex align-items-center">
+<?php
+$email=$_POST['email'];/* Obtiene el valor del campo de entrada usuario del formulario enviado por el método POST.*/
+$password=$_POST['password'];/* Obtiene el valor del campo de entrada password del formulario enviado por el método POST.*/
 
-      <div class="container position-relative d-flex align-items-center justify-content-between">
-        <a href="index.php" class="logo d-flex align-items-center me-auto">
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="assets/img/logo.png" alt=""> -->
-          <h1 class="sitename">Historia Clínica Digital</h1>
-        </a>
+include("conexion.php");/* Incluye el archivo conexion.php, que generalmente contiene el código para conectar a la base de datos. 
+Esto permite que el script tenga acceso a la conexión a la base de datos.*/
 
-        <nav id="navmenu" class="navmenu">
-          <ul>
-            <li><a href="#contact">Contacto</a></li>
-          </ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
+$consulta=mysqli_query($conexion, "SELECT nombre, apellido, email FROM cuentas WHERE email='$email' AND password='$password'");
+/*  Ejecuta una consulta SQL en la base de datos. Busca en la tabla cuentas aquellos registros donde el usuario 
+y password coincidan con los valores ingresados por el usuario. El resultado se almacena en la variable $consulta.*/
 
+$resultado=mysqli_num_rows($consulta);/*Cuenta el número de filas devueltas por la consulta. 
+Si hay coincidencias (es decir, si el usuario y la contraseña son correctos), el valor será mayor que cero.*/
 
-      </div>
+if($resultado!=0){/*Comienza una estructura condicional que verifica si hay al menos 
+	un resultado en la consulta (es decir, si el usuario existe)*/
+	$respuesta=mysqli_fetch_array(result: $consulta);
+	/* Extrae una fila de resultados de la consulta y la almacena como un array asociativo en $respuesta*/
+	
+	$_SESSION['nombre']=$respuesta['nombre'];/*Almacena el nombre del usuario en la sesión */
+	$_SESSION['apellido']=$respuesta['apellido'];/* Almacena el apellido del usuario en la sesión*/
+  
+  header('Location: starter-page.html');
+  
 
-    </div>
+}else{/* Si no hay resultados (es decir, si las credenciales no coinciden)*/
+	echo "No es un usuario registrado";/*Muestra un mensaje indicando que las credenciales no son válidas*/
+	include ("form_registro.php");/*Muestra un mensaje indicando que las credenciales no son válidas*/
+}
 
-  </header>
-
-  <main class="main">
-
-    <!-- Contact Section -->
-    <section id="login" class="contact section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Bienvenido</h2>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-8">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-                </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
-                </div>
-
-              </div>
-            </form>
-          </div><!-- End Contact Form -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Contact Section -->
-
-  </main>
-
-  <footer class="footer light-background">
-    <div class="container copyright text-center">
-      <p>© 2024 <strong class="px-1 sitename">Historia Clinica Digital</strong> <span>Todos los derechos reservados </span></p>
-    </div>
-  </footer>
-
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
+?>
 
 </body>
 

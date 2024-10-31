@@ -50,20 +50,27 @@
     </div> -->
     <!-- End Top Bar -->
 
-    <div class="branding d-flex align-items-center">
+    <div class="branding d-flex align-items-center"> <!-- Crea un contenedor para los elementos de la marca (logo y menú de navegación)
+      con clases branding y d-flex align-items-center. Estas clases de Bootstrap permiten que los elementos se alineen horizontalmente al centro -->
 
       <div class="container position-relative d-flex align-items-center justify-content-between">
-        <a href="index.php" class="logo d-flex align-items-center me-auto">
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="assets/img/logo.png" alt=""> -->
+        <!-- Define un contenedor de Bootstrap (container) para alinear y espaciar los elementos dentro de la barra de navegación. 
+         position-relative permite posicionamiento de elementos hijo,
+        mientras que d-flex align-items-center justify-content-between los distribuye horizontalmente con espacio entre ellos.-->
+        <a href="index.php" class="logo d-flex align-items-center me-auto"> 
+          <!-- Este enlace a dirige al usuario a la página de inicio (index.php). 
+          Incluye el nombre del sitio "Historia Clínica Digital" como título -->
           <h1 class="sitename">Historia Clínica Digital</h1>
         </a>
 
-        <nav id="navmenu" class="navmenu">
+        <nav id="navmenu" class="navmenu"> <!-- Define un contenedor de navegación con el ID navmenu y la clase navmenu -->
         <ul>
-          <li><a href="index.php" class="active">Inicio</a></li>
-          
-          <?php if (isset($_SESSION['tipo_usuario'])): ?>
+          <li><a href="index.php" class="active">Inicio</a></li> 
+          <!-- Esta lista desordenada (ul) contiene los elementos de navegación como "Inicio" 
+           con una clase active que resalta el enlace en la página actual -->
+          <?php if (isset($_SESSION['tipo_usuario'])): ?> <!--  Utiliza PHP para verificar si existe una sesión de usuario iniciada (isset($_SESSION['tipo_usuario'])).
+             Si la sesión está iniciada, se muestran enlaces adicionales: "Perfil", "Contacto" y "Cerrar Sesión".
+             En caso contrario, no se muestra nada, pero en esta parte del else podrían añadirse enlaces para usuarios no autenticados.-->
               <li><a href="perfil.php">Perfil</a></li>
               <li><a href="contact.php">Contacto</a></li>
               <li><a href="logout.php">Cerrar Sesión</a></li>
