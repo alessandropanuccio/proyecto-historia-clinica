@@ -35,6 +35,8 @@
 <?php
 	$nombre = $_POST['nombre'];
 	$apellido = $_POST['apellido'];
+  $dni = $_POST['dni'];
+  $nroafiliado = $_POST['nroafiliado'];
 	$email = $_POST['email'];
 	$usuario = $_POST['usuario'];
 	$password = md5($_POST['password']);

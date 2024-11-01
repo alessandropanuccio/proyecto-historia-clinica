@@ -72,4 +72,5 @@ if($resultado!=0){/*Comienza una estructura condicional que verifica si hay al m
 
 </body>
 
+
 </html>

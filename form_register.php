@@ -72,12 +72,14 @@
 
   <main class="main">
     <!-- Contact Section -->
-    <section id="login" class="form section m-auto">
+    <section id="login" class="contact-section">
     <!-- Define una sección de contacto/inicio de sesión, usando el atributo id="login" y la clase form section. 
      Esto permite identificar y aplicar estilos a esta sección.-->
 
       <!-- Section Title -->
-      <div class="container section-title m-auto" data-aos="fade-up"><!--Muestra el título "Bienvenido" de la sección. 
+      <div class="container d-flex justify-content-center" data-aos="fade-up">
+        <div class="col-md-8 col-lg-6 p-4 shadow rounded bg-white">
+          <div class="section-title text-center"><!--Muestra el título "Registro" de la sección. 
         El atributo data-aos="fade-up" permite animar el título al deslizar la página 
         (usando la biblioteca AOS para efectos de animación). -->
         <h2>Registro</h2>
@@ -96,6 +98,18 @@
       <input type="text" class="form-control" id="apellido" placeholder="Ingresa tu apellido" required="">
     </div><br />
 
+    <!-- DNI -->
+    <div class="m-auto">
+      <label for="dni" class="form-label">DNI</label>
+      <input type="number" class="form-control" id="dni" placeholder="Ingresa tu DNI" required="">
+    </div><br />
+
+    <!-- DNI -->
+    <div class="m-auto">
+      <label for="apellido" class="form-label">Numero de afiliado</label>
+      <input type="number" class="form-control" id="nroafiliado" placeholder="Ingresa tu DNI" required="">
+    </div><br />
+
     <!-- Email -->
     <div class="m-auto">
       <label for="email" class="form-label">Correo Electrónico</label>
@@ -110,15 +124,19 @@
 
     <div class="col-md-12 text-center">
                 <input name="tyc" type="checkbox" value="si" checked="checked" required=" "/> Acepta términos y condiciones.
-                </div>
+                </div><br/>
     <!-- Botón Registrarse -->
-    <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+    <button type="submit" class="btn btn-primary w-100" value="registrarse">Registrarse</button>
     
-  </form><br />
+  </form>
+  <br/>
+  <a href="form_login.php">Ya tenes cuenta? Iniciar Sesion</a>  
 
-    <a href="form_login.php">Ya tenes cuenta? Iniciar Sesion</a>
-    
   </div>
+  </div>
+
+    
+  
         
     </section><!-- /Contact Section -->
 

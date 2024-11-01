@@ -73,51 +73,41 @@
   <main class="main">
 
     <!-- Contact Section -->
-    <section id="login" class="m-auto">
+    <section id="login" class="contact-section">
     <!-- Define una sección de contacto/inicio de sesión, usando el atributo id="login" y la clase contact section. 
      Esto permite identificar y aplicar estilos a esta sección.-->
 
       <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up"><!--Muestra el título "Bienvenido" de la sección. 
+      <div class="container d-flex justify-content-center" data-aos="fade-up">
+        <div class="col-md-8 col-lg-6 p-4 shadow rounded bg-white">
+          <div class="section-title text-center"><!--Muestra el título "Bienvenido" de la sección. 
         El atributo data-aos="fade-up" permite animar el título al deslizar la página 
         (usando la biblioteca AOS para efectos de animación). -->
         <h2>Bienvenido</h2>
       </div><!-- End Section Title -->
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <!--Este contenedor div agrupa el formulario de contacto,
-         con una animación AOS (fade-up) que se inicia tras un retraso de 100 milisegundos. -->
-
-        <div class="row gy-4"><!--row y gy-4 son clases de Bootstrap que configuran un diseño en fila y añaden un margen vertical (gy-4) entre los elementos. -->
-
-          <div class="col-lg-8"><!-- Define una columna de ancho col-lg-8 que ocupa 8 de las 12 unidades de ancho en pantallas grandes.-->
-            <form action="login.php" method="post" class="php-email-form m-auto" data-aos="fade-up" data-aos-delay="200">
+      <form action="login.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
               <!--Especifica un formulario que envía datos mediante POST a login.php. 
               php-email-form es una clase que permite aplicar estilos específicos al formulario, 
               y el atributo data-aos agrega un efecto de animación. -->
               
-              <div class="row gy-4">
+      <!-- Email -->
+      <div class="m-auto">
+        <label for="email" class="form-label">Correo Electrónico</label>
+        <input type="email" class="form-control" id="email" placeholder="example@ejemplo.com" required ="">
+      </div><br />
 
+      <!-- Contraseña -->
+      <div class="m-auto">
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña" required="">
+     </div><br />
 
-                <div class="col-md-12 "><!-- -->
-                <label>Correo Electrónico
-                  <input type="email" class="form-control" name="email" placeholder="example@exaple.com" required="">
-                  <!-- Campo para introducir el correo electrónico, validado automáticamente como un email válido -->
-                  </label><br />
-                </div>
-                
-                <div class="col-md-12"><!-- -->
-                <label>Contraseña
-                  <input type="password" class="form-control" name="password" placeholder=" " required="">
-                  <!-- Campo de texto para el asunto del mensaje -->
-                </div>
+                  <button type="submit" class="btn btn-primary w-100" value="iniciar sesion">Iniciar Sesion</button>
 
-                  <button type="submit" class="btn btn-primary w-100">Iniciar Sesion</button>
-
-              </div>
-              </div>
-            </form>
-            <a href="form_register.php">Registrarse</a>
+    </form>
+    <br/>
+            <a href="form_register.php">Registrarse</a> <br/>
             <a href="recover-password.php">Olvido su contraseña?</a>
           </div>
 
